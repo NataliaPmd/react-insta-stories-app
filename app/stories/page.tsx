@@ -1,12 +1,12 @@
 import Stories from "@/components/Stories";
 
-const Home = () => {
+const StoriesPage = () => {
   return (
     <div>
-      <h1>Video Stories</h1>
+      <h1>Stories</h1>
       <Stories />
     </div>
   );
 };
 
-export default Home;
+export default StoriesPage;
