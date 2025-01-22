@@ -1,8 +1,8 @@
 import React from "react";
-import { getPexelsVideos, Video } from "./lib/pexels";
+import { getPexelsVideos } from "./lib/pexels";
 import Stories from "./components/Stories";
 
-const Page: React.FC<{ videos: Video[] }> = async () => {
+const Page: React.FC = async () => {
   const videos = await getPexelsVideos();  // Obtiene los videos desde la API de Pexels
 
   return (
