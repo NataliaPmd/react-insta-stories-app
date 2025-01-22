@@ -1,5 +1,5 @@
-import { API_KEY } from "@/utils/config";
-import axios from "axios";
+import axios from 'axios';
+import { API_KEY } from '@/utils/config';
 
 export interface Video {
   url: string;
@@ -7,9 +7,9 @@ export interface Video {
   title: string;
 }
 
-export interface VideoResponse{
-  user:{name: string};
-  video_files:{link: string}[];
+export interface VideoResponse {
+  user: { name: string };
+  video_files: { link: string }[];
 }
 
 export const getPexelsVideos = async (): Promise<Video[]> => {
@@ -19,17 +19,17 @@ export const getPexelsVideos = async (): Promise<Video[]> => {
         Authorization: API_KEY,
       },
       params: {
-        query: "lifestyle", 
-        per_page: 5,  
-        orientation: 'portrait'   
+        query: "lifestyle",
+        per_page: 5,
+        orientation: 'portrait',
       },
     });
 
     return response.data.videos.map((video: VideoResponse) => ({
       url: video.video_files[0]?.link,
-      duration: 5000,  
+      duration: 5000,  // Duración en milisegundos para el video
       title: video.user.name,
-      type: "video"
+      type: "video",
     }));
   } catch (error) {
     console.error("Error fetching videos:", error);
