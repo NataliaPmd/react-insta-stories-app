@@ -1,8 +1,10 @@
 'use client';  // Esta directiva asegura que este componente se ejecute en el cliente
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InstaStories from "react-insta-stories";
 import { Video } from "../lib/pexels";
+import Image from "next/image";
+
 
 interface StoriesProps {
   stories: Video[];
@@ -10,23 +12,22 @@ interface StoriesProps {
 
 
 const Stories: React.FC<StoriesProps> = ({ stories }) => {
-  const [domLoaded, setDomLoaded] = useState(false);
-
-  useEffect(() => {
-    setDomLoaded(true);
-  }, []);
-  
+  const [showStories, setShowStories] = useState(false);
   return (
-    <div className="relative w-full aspect-[9/16]">
-      {domLoaded && stories.length > 0 ? (
-        <InstaStories
-          stories={stories}
-          width="480px"
-          height="100%"
-          loop={true}
+    <div className="relative aspect-[9/16]">
+      {!showStories ? (
+        <Image
+          src="/image2.jpg" // Cambia esto por tu imagen
+          alt="Abrir historias"
+          width={'750'}
+          height={'1216'}
+          className="cursor-pointer"
+          onClick={() => setShowStories(true)}
         />
       ) : (
-        <p>No videos available</p>
+          <InstaStories stories={stories} width="750px"
+          height="1216px"
+          loop={true}onAllStoriesEnd={() => setShowStories(false)} />
       )}
     </div>
   );
